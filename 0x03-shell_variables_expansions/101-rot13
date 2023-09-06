@@ -1,0 +1,28 @@
+#!/bin/bash
+
+encode_rot13() {
+    echo "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+}
+
+decode_rot13() {
+    echo "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+}
+
+if [[ $# -ne 2 ]]; then
+    echo "Usage: $0 [encode/decode] [text]"
+    exit 1
+fi
+
+mode="$1"
+text="$2"
+
+if [[ "$mode" == "encode" ]]; then
+    encoded_text=$(encode_rot13 "$text")
+    echo "Encoded text: $encoded_text"
+elif [[ "$mode" == "decode" ]]; then
+    decoded_text=$(decode_rot13 "$text")
+    echo "Decoded text: $decoded_text"
+else
+    echo "Invalid mode. Please choose 'encode' or 'decode'."
+    exit 1
+fi
